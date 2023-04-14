@@ -8,7 +8,7 @@ function playRound() {
     let scorePC = 0;
     
     while ((scorePC + scorePlayer) < 5) {
-        let player = prompt("Digite a sua escolha: ").toLowerCase();
+        let player = prompt("This is a Rock, Paper and Scissors game. Make your choice: ").toLowerCase();
         let pc = getComputerChoice();
 
         if (player == pc) {
