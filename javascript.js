@@ -1,51 +1,63 @@
+let scorePlayer = 0;
+let scorePC = 0;
+
 function getComputerChoice() {
-    const choices = ["Rock", "Paper", "Scissors"];    
-    return choices[Math.floor(Math.random() * choices.length)].toLowerCase();    
-  }
+  const choices = ["Rock", "Paper", "Scissors"];    
+  return choices[Math.floor(Math.random() * choices.length)].toLowerCase();    
+}
 
-function playRound() {
-    let scorePlayer = 0;
-    let scorePC = 0;
-    
-    while ((scorePC + scorePlayer) < 5) {
-        let player = prompt("This is a Rock, Paper and Scissors game. Make your choice: ").toLowerCase();
-        let pc = getComputerChoice();
+function updateScore() {
+  // atualizar os placares na tela
+  document.getElementById("user-score").innerHTML = scorePlayer;
+  document.getElementById("computer-score").innerHTML = scorePC;
+}
 
-        if (player == pc) {
-            alert("It is a draw!");
-        }
-        else {
-            if (player == "rock" && pc == "paper") {
-                alert("You lost!");
-                scorePC++;
-            }
-            else if (player == "rock" && pc == "scissors") {
-                alert("You won!");
-                scorePlayer++;
-            }
-            else if (player == "paper" && pc == "scissors") {
-                alert("You lost!");
-                scorePC++;
-            }
-            else if (player == "paper" && pc == "rock") {
-                alert("You won!");
-                scorePlayer++;
-            }
-            else if (player == "scissors" && pc == "rock") {
-                alert("You lost!");
-                scorePC++;
-            }
-            else if (player == "scissors" && pc == "paper") {
-                alert("You won!");
-                scorePlayer++;
-            }
-        }
+function playRound(choice) {  
+  let player = choice;
+  let pc = getComputerChoice();
+
+  if (player == pc) {
+    alert("It is a draw!");
+  } else {
+    if (player == "rock" && pc == "paper") {
+      alert("You lost!");
+      scorePC++;
+    } else if (player == "rock" && pc == "scissors") {
+      alert("You won!");
+      scorePlayer++;
+    } else if (player == "paper" && pc == "scissors") {
+      alert("You lost!");
+      scorePC++;
+    } else if (player == "paper" && pc == "rock") {
+      alert("You won!");
+      scorePlayer++;
+    } else if (player == "scissors" && pc == "rock") {
+      alert("You lost!");
+      scorePC++;
+    } else if (player == "scissors" && pc == "paper") {
+      alert("You won!");
+      scorePlayer++;
     }
-
-    return "The players had these scores: User " + scorePlayer + " points and Computer " + scorePC + " points.";
+    
+    updateScore();
+  }
 }  
 
-console.log(playRound());
+// buttons é uma lista de elementos. Parece e age como uma array.
+const buttons = document.querySelectorAll('button');
+
+// iterar por cada botão
+buttons.forEach((button) => {
+  // adicionar um evento de clique em cada botão
+  button.addEventListener('click', () => {
+    playRound(button.id);
+  });
+});
+
+
+
+
+
 
 
   
